@@ -28,7 +28,8 @@ pipeline {
                     input message:'Approve Production Changes ?'
                 }
                 build job: 'deploy-to-prod'
-                post {
+            }
+            post {
                     success{
                         echo "Deploy to Production completed succesfully"
                     }
@@ -41,4 +42,3 @@ pipeline {
         }
 
     }
-}
