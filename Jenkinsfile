@@ -22,6 +22,23 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Production'){
+            steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Approve Production Changes ?'
+                }
+                build job: 'deploy-to-prod'
+                post {
+                    success{
+                        echo "Deploy to Production completed succesfully"
+                    }
+                    failure{
+                        echo "Deployment to PROD got failed, Please verify steps"
+                    }
+                }
+
+            }
+        }
 
     }
 }
